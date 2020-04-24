@@ -20,7 +20,11 @@ server.use(session({
     saveUninitialized: true
 }))
 server.use(helmet());
-server.use(cors());
+server.use(cors({
+    origin: ['http://localhost:3300', 'http://localhost:3000', 'http://127.0.0.1:3300', 'http://127.0.0.1:3000'],
+    methods: ['GET', 'POST'],
+    credentials: true
+}));
 server.use(express.json());
 
 server.use('/api/auth', authRouter);
